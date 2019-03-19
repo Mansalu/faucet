@@ -25,11 +25,11 @@ spec:
         - containerPort: 9090
         resources: {}
         volumeMounts:
-        - mountPath: /prometheus
+        - mountPath: ~/faucet/prometheus
           name: prometheus-claim0
-        - mountPath: /etc/prometheus/prometheus.yml
+        - mountPath: ~/faucet/etc/prometheus/prometheus.yml
           name: prometheus-claim1
-        - mountPath: /etc/prometheus/faucet.rules.yml
+        - mountPath: ~/faucet/etc/prometheus/faucet.rules.yml
           name: prometheus-claim2
       restartPolicy: Always
       volumes:
