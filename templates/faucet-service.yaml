@@ -9,16 +9,14 @@ metadata:
     io.kompose.service: faucet
   name: faucet
 spec:
-  tpye: NodePort
+  type: NodePort
   ports:  
   - name: "6653"
     port: 6653
     targetPort: 6653
-    protocal: TCP
   - name: "9302"
     port: 9302
     targetPort: 9302
-    protocal: TCP
   selector:
     io.kompose.service: faucet
 status:
