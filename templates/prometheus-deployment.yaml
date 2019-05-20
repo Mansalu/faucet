@@ -1,22 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.17.0 ()
-  creationTimestamp: null
+  name: {{ template "prometheus.fullname" . }}
   labels:
-    io.kompose.service: prometheus
-  name: prometheus
+    app: {{ template "prometheus.name" . }}
+    chart: {{ template "faucet.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   template:
     metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.service: prometheus
+      app: {{ template "prometheus.name" . }}
+      instance: {{ .Values.Instance }}
+      release: {{ .Release.Name }}
     spec:
       containers:
       - image: prom/prometheus:v2.6.1

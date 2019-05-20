@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.17.0 ()
-  creationTimestamp: null
+  name: {{ template "influxdb.fullname" . }}
   labels:
-    io.kompose.service: influxdb
-  name: influxdb
+    app: {{ template "influxdb.name" . }}
+    chart: {{ template "faucet.chart" . }}
+    release: {{ .Release.Name }}
+    instance: {{ .Values.Instance }}
 spec:
   ports:
   - name: "8086"
@@ -17,6 +16,7 @@ spec:
     port: 8083
     targetPort: 8083
   selector:
-    io.kompose.service: influxdb
+    app: {{ template "influxdb.name" . }}
+    instance: {{ .Values.Instance }}
 status:
   loadBalancer: {}
