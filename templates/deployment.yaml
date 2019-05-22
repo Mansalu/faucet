@@ -40,6 +40,6 @@ spec:
         persistentVolumeClaim:
           claimName: faucet-claim0
       - name: faucet-{{ .Values.Instance }}-configuration
-      ConfigMap:
-        name: faucet-{{ .Values.Instance }}-configuration
+        configMap:
+          name: faucet-{{ .Values.Instance }}-configuration
 status: {}
