@@ -33,13 +33,13 @@ spec:
         - mountPath: /var/log/faucet
           name: faucet-claim0
         - mountPath: /etc/faucet
-          name: faucet-claim1
+          name: faucet-{{ .Values.Instance }}-configuration
       restartPolicy: Always
       volumes:
       - name: faucet-claim0
         persistentVolumeClaim:
           claimName: faucet-claim0
-      - name: faucet-claim1
-        persistentVolumeClaim:
-          claimName: faucet-claim1
+      - name: faucet-{{ .Values.Instance }}-configuration
+        configMap:
+          name: faucet-{{ .Values.Instance }}-configuration
 status: {}
